@@ -12,7 +12,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ExpenseTrack">
         <activity
-            android:name=".MainActivity"
+            android:name=".view.activities.MainActivity"
+            android:exported="false"
+            android:theme="@style/Theme.ExpenseTrack" />
+        <activity
+            android:name=".view.activities.AuthActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
