@@ -15,6 +15,9 @@ class AuthViewModel(private val authRepository: AuthRepository): ViewModel() {
     private val _signOutResult = MutableLiveData<Result<Boolean>>()
     val signOutResult: LiveData<Result<Boolean>> = _signOutResult
 
+    private val _resetLinkResult = MutableLiveData<Result<Boolean>>()
+    val resetLinkResult: LiveData<Result<Boolean>> get() = _resetLinkResult
+
     fun signIn(email: String, password: String) {
         authRepository.signIn(email, password).observeForever {
             _authResult.value = it
@@ -30,6 +33,12 @@ class AuthViewModel(private val authRepository: AuthRepository): ViewModel() {
     fun signOut() {
         authRepository.signOut().observeForever {
             _signOutResult.value = it
+        }
+    }
+
+    fun resetPassword(email: String) {
+        authRepository.resetPassword(email).observeForever {
+            _resetLinkResult.value = it
         }
     }
 
