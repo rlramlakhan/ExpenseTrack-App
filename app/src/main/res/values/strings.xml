@@ -1,4 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">ExpenseTrack</string>
+    <string name="arrow_back">Arrow Back</string>
+    <string name="login_to_your_n_account">Login to your \nAccount</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="forgot_password">Forgot Password?</string>
+    <string name="sign_in">Sign In</string>
+    <string name="create_your_n_account">Create your \nAccount</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="track_your_n_spending_n_effortlessly">Track Your \nSpending \nEffortlessly</string>
+    <string name="manage_your_finances_easily_using_our_n_intuitive_and_user_friendly_interface">Manage your finances easily using our \nintuitive and user-friendly interface.</string>
+    <string name="get_started">Get Started</string>
+    <string name="already_have_an_account">Already have an account?</string>
+    <string name="reset_your_n_password">Reset your \nPassword</string>
+    <string name="send">Send</string>
 </resources>

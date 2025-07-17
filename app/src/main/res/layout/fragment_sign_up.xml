@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    tools:context=".view.fragments.SignUpFragment">
+
+
+    <ImageButton
+        android:id="@+id/ibBackSignUp"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:contentDescription="@string/arrow_back"
+        android:src="@drawable/ic_arrow_back"
+        android:background="@drawable/bg_round"
+        android:backgroundTint="?attr/colorSurfaceContainer"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        app:tint="?attr/colorPrimary" />
+
+    <TextView
+        android:id="@+id/tvSignUpTitle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/create_your_n_account"
+        android:textColor="?attr/colorPrimary"
+        android:textSize="32sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ibBackSignUp"
+        app:layout_constraintVertical_bias="0.050000012" />
+
+    <EditText
+        android:id="@+id/etEmailSignUp"
+        android:layout_width="0dp"
+        android:layout_height="48dp"
+        android:autofillHints="emailAddress"
+        android:background="@drawable/bg_round"
+        android:backgroundTint="?attr/colorSurfaceContainer"
+        android:ems="10"
+        android:hint="@string/email"
+        android:inputType="textEmailAddress"
+        android:paddingHorizontal="16dp"
+        android:textColorHint="?attr/colorSecondary"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvSignUpTitle"
+        app:layout_constraintVertical_bias="0.100000024"
+        app:layout_constraintWidth_max="488dp"
+        tools:ignore="LabelFor" />
+
+    <EditText
+        android:id="@+id/etPasswordSignUp"
+        android:layout_width="0dp"
+        android:layout_height="48dp"
+        android:autofillHints="password"
+        android:background="@drawable/bg_round"
+        android:backgroundTint="?attr/colorSurfaceContainer"
+        android:ems="10"
+        android:hint="@string/password"
+        android:inputType="textPassword"
+        android:paddingHorizontal="16dp"
+        android:textColorHint="?attr/colorSecondary"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etEmailSignUp"
+        app:layout_constraintVertical_bias="0.04000002"
+        app:layout_constraintWidth_max="488dp"
+        tools:ignore="LabelFor" />
+
+    <Button
+        android:id="@+id/btnSignUp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/sign_up"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etPasswordSignUp"
+        app:layout_constraintVertical_bias="0.16000003"
+        app:layout_constraintWidth_max="320dp" />
+
+    <ProgressBar
+        android:id="@+id/progressBarSignUp"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>
