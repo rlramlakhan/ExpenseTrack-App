@@ -34,12 +34,15 @@ class TransactionRepository {
             override fun onDataChange(snapshot: DataSnapshot) {
                 val transactionList = mutableListOf<Transaction>()
                 for (data in snapshot.children) {
-                    val uid = authRepository.getCurrentUser()?.uid.toString()
-                    if (data.child("uid").value.toString() == uid) {
-                        val transaction = data.getValue(Transaction::class.java)
-                        transaction?.let {
-                            transactionList.add(it)
-                        }
+                    if (data.child("uid").value.toString() == authRepository.getCurrentUser()?.uid.toString()) {
+                        val id = data.child("id").value.toString()
+                        val title = data.child("title").value.toString()
+                        val amount = data.child("amount").value.toString()
+                        val type = data.child("type").value.toString()
+                        val uid = data.child("uid").value.toString()
+                        val transaction = Transaction(id, title, amount, type, uid)
+                        transactionList.add(transaction)
+                        list.value = transactionList
                     }
                 }
             }

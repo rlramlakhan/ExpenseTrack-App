@@ -42,7 +42,7 @@
         app:layout_constraintWidth_max="488dp" />
 
     <EditText
-        android:id="@+id/editTextText2"
+        android:id="@+id/etAmount"
         android:layout_width="0dp"
         android:layout_height="48dp"
         android:autofillHints="number"
@@ -70,7 +70,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextText2"
+        app:layout_constraintTop_toBottomOf="@+id/etAmount"
         app:layout_constraintVertical_bias="0.04000002" />
 
     <Spinner

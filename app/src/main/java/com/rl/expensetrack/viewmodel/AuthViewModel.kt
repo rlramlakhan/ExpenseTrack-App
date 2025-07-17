@@ -50,6 +50,7 @@ class AuthViewModel(private val authRepository: AuthRepository): ViewModel() {
         _userStatus.value = currentUser != null
     }
 
+    fun getCurrentUser(): FirebaseUser? = authRepository.getCurrentUser()
 }
 
 class AuthViewModelFactory(private val authRepository: AuthRepository): ViewModelProvider.Factory {
