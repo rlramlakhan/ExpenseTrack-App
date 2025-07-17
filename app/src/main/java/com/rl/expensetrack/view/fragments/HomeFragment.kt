@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
 import com.rl.expensetrack.R
 import com.rl.expensetrack.databinding.FragmentHomeBinding
 
@@ -23,6 +24,10 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        binding.fabBtnAdd.setOnClickListener {
+            findNavController().navigate(R.id.action_homeFragment_to_transactionFragment)
+        }
     }
 
     override fun onDestroyView() {
