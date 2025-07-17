@@ -43,7 +43,12 @@ class TransactionRepository {
                         val transaction = Transaction(id, title, amount, type, uid)
                         transactionList.add(transaction)
                         list.value = transactionList
+                    } else {
+                        list.value = emptyList()
                     }
+                }
+                if (!snapshot.exists()) {
+                    list.value = emptyList()
                 }
             }
 

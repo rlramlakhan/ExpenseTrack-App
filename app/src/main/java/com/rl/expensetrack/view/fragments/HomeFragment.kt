@@ -8,9 +8,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.rl.expensetrack.R
 import com.rl.expensetrack.databinding.FragmentHomeBinding
 import com.rl.expensetrack.model.repositories.TransactionRepository
@@ -48,6 +51,37 @@ class HomeFragment : Fragment() {
         transactionViewModel.getTransactions()
         observeViewModel()
 
+        val swipeCallback = object : ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT) {
+            override fun onMove(
+                recyclerView: RecyclerView,
+                viewHolder: RecyclerView.ViewHolder,
+                target: RecyclerView.ViewHolder
+            ): Boolean {
+                return false
+            }
+
+            override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+                val position = viewHolder.absoluteAdapterPosition
+                val transaction = transactionAdapter.list[position]
+
+                AlertDialog.Builder(requireContext())
+                    .setTitle("Delete Transaction")
+                    .setMessage("Are you sure you want to delete this transaction?")
+                    .setPositiveButton("Delete") {_, _ ->
+                        transactionViewModel.deleteTransaction(transaction)
+                    }
+                    .setNeutralButton("Cancel") {dialog, _ ->
+                        transactionAdapter.notifyItemChanged(position)
+                        dialog.dismiss()
+                    }
+                    .setCancelable(false)
+                    .show()
+            }
+
+        }
+
+        ItemTouchHelper(swipeCallback).attachToRecyclerView(binding.recyclerView)
+
         binding.fabBtnAdd.setOnClickListener {
             findNavController().navigate(R.id.action_homeFragment_to_transactionFragment)
         }
@@ -59,19 +93,20 @@ class HomeFragment : Fragment() {
             if (transactions.isEmpty()) {
                 binding.tvNoTransactions.visibility = View.VISIBLE
             } else {
-                var income = 0
-                var expense = 0
-                transactions.forEach {
-                    when(it.type) {
-                        "Income" -> income += it.amount.toInt()
-                        "Expense" -> expense += it.amount.toInt()
-                    }
-                }
-                binding.tvBalanceAmount.text = "$${(income - expense)}"
-                binding.tvIncomeAmount.text = "+$$income"
-                binding.tvExpenseAmount.text = "-$$expense"
-                transactionAdapter.updateList(transactions)
+                binding.tvNoTransactions.visibility = View.GONE
             }
+            transactionAdapter.updateList(transactions)
+            var income = 0
+            var expense = 0
+            transactions.forEach {
+                when(it.type) {
+                    "Income" -> income += it.amount.toInt()
+                    "Expense" -> expense += it.amount.toInt()
+                }
+            }
+            binding.tvBalanceAmount.text = "$${(income - expense)}"
+            binding.tvIncomeAmount.text = "+$$income"
+            binding.tvExpenseAmount.text = "-$$expense"
             binding.progressBarHome.visibility = View.GONE
         }
     }

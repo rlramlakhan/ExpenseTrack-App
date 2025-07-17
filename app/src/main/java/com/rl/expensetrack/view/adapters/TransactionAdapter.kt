@@ -12,6 +12,7 @@ import com.rl.expensetrack.model.entities.Transaction
 class TransactionAdapter: RecyclerView.Adapter<TransactionAdapter.ViewHolder>() {
 
     private var transactions: List<Transaction> = emptyList()
+    val list: List<Transaction> get() = transactions
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
