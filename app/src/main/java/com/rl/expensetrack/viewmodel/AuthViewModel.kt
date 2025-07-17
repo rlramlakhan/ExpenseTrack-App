@@ -18,6 +18,9 @@ class AuthViewModel(private val authRepository: AuthRepository): ViewModel() {
     private val _resetLinkResult = MutableLiveData<Result<Boolean>>()
     val resetLinkResult: LiveData<Result<Boolean>> get() = _resetLinkResult
 
+    private val _userStatus = MutableLiveData<Boolean>()
+    val userStatus: LiveData<Boolean> get() = _userStatus
+
     fun signIn(email: String, password: String) {
         authRepository.signIn(email, password).observeForever {
             _authResult.value = it
@@ -42,7 +45,11 @@ class AuthViewModel(private val authRepository: AuthRepository): ViewModel() {
         }
     }
 
-    fun getUser(): FirebaseUser? = authRepository.getCurrentUser()
+    fun getUser() {
+        val currentUser = authRepository.getCurrentUser()
+        _userStatus.value = currentUser != null
+    }
+
 }
 
 class AuthViewModelFactory(private val authRepository: AuthRepository): ViewModelProvider.Factory {
